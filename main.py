@@ -67,7 +67,8 @@ def read(filename: str):
     except FileNotFoundError:
         raise InvaildPath(filename)
 
-    current_line = 1
+    gaint_current_line = 1
+    current_line = 0
 
     for line in file:
         colorslist = []
@@ -75,8 +76,10 @@ def read(filename: str):
         for item in line:
             if item not in vaild_chars:
                 raise InvaildColor(item, current_line)
-            if item == "|":
+            else:
                 current_line += 1
+            if item == "|":
+                gaint_current_line += 1
             colorslist.append(
                 item.replace("0", "black")
                 .replace("1", "white")
